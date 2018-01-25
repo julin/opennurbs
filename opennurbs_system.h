@@ -124,6 +124,9 @@
 // Define ON_NO_WINDOWS if you are compiling on a Windows system but want
 // to explicitly exclude inclusion of windows.h.
 */
+#if defined (_MINGW)
+#define ON_NO_WINDOWS 
+#endif
 
 #if !defined(ON_NO_WINDOWS)
 

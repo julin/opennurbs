@@ -15353,6 +15353,8 @@ const wchar_t* ON_FileIterator::NextFile()
   m_count++;
   m_fd.cFileName[(sizeof(m_fd.cFileName)/sizeof(m_fd.cFileName[0]))-1] = 0;
   return m_fd.cFileName;
+#elif defined(_MINGW)
+  return nullptr;
 #else
 
   // gcc code
