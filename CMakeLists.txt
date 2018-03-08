@@ -242,9 +242,8 @@ set(OPENURBS_INC
 
 include_directories(zlib)
 
-
+add_library(opennurbs STATIC ${OPENURBS_SRC} ${OPENURBS_INC})
 if(MSVC)
-  add_library(opennurbs STATIC ${OPENURBS_SRC} ${OPENURBS_INC})
   add_definitions(-D_USE_MATH_DEFINES -DNOMINMAX -DUNICODE -D_CRT_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_DEPRECATE)
   set_target_properties(opennurbs PROPERTIES LINK_FLAGS_RELEASE "/nodefaultlib:LIBCMT")
   foreach(VAR
@@ -258,9 +257,9 @@ if(MSVC)
   endforeach()  
   #message(STATUS "CMAKE_CXX_FLAGS_DEBUG=" ${CMAKE_CXX_FLAGS_DEBUG}) 
 elseif(UNIX)
-  add_library(opennurbs SHARED ${OPENURBS_SRC} ${OPENURBS_INC})
   add_definitions(-DLINUX -DHAVE_CLOCK)
-  
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
 endif()
 
 if(MSVC)
