@@ -147,7 +147,7 @@
 // windows.h has to fight with this Microsoft bug.
 #undef WIN32
 #else
-#error do not define WIN32 for x64 builds
+#undef WIN32
 #endif
 
 // NOTE _WIN32 is defined for any type of Windows build
